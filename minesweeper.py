@@ -103,25 +103,22 @@ pygame.display.update()
 
 GeneratingSpawn = True
 while GeneratingSpawn:
-    try:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
                 run = False
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
-                    run = False
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                mouse_pos = event.pos
-                x = round(CordLookDown(mouse_pos[0]))
-                y = round(CordLookDown(mouse_pos[1]))
-                SpawnZone = [[x, y]]
-                for mod_x in range(-1,2):
-                    for mod_y in range(-1,2):
-                        if [mod_x, mod_y] != [0, 0]:
-                            SpawnZone.append([x + mod_x, y + mod_y])
-                GeneratingSpawn = False
-    except:
-        pass
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            mouse_pos = event.pos
+            x = round(CordLookDown(mouse_pos[0]))
+            y = round(CordLookDown(mouse_pos[1]))
+            SpawnZone = [[x, y]]
+            for mod_x in range(-1,2):
+                for mod_y in range(-1,2):
+                    if [mod_x, mod_y] != [0, 0]:
+                        SpawnZone.append([x + mod_x, y + mod_y])
+            GeneratingSpawn = False
 
         
 
